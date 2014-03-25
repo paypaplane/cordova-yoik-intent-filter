@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="net.yoik.cordova.plugins.intentfilter"
+        version="0.0.1">
+
+  <name>Android Listen to url Intent</name>
+
+  <description>
+    Andoid app can respond to custom urls:  http://myhost
+  </description>
+
+  <license>MIT</license>
+
+  <preference name="URL_SCHEME" />
+  <preference name="HOST_NAME" />
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <!-- android -->
+  <platform name="android">
+   
+    <config-file target="AndroidManifest.xml" parent="/*/application/activity">
+      <intent-filter>
+        <data android:scheme="$URL_SCHEME" android:host="$HOST_NAME" android:pathPattern="/.*"/>/>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+      </intent-filter>
+    </config-file>
+  </platform>
+
+</plugin>
